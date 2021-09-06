@@ -13,9 +13,9 @@
            <router-view class="view"></router-view>
           </transition>
         </div>
-        <!-- <Footer/> -->
+        <Footer/>
       </div>
-      <!-- <Customizer/> -->
+      <Customizer/>
     </div>
   </div>
 </template>
