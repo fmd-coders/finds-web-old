@@ -372,19 +372,14 @@ export default {
     // this.layout.color.color = localStorage.getItem("color");
     // this.layout.color.primary_color = localStorage.getItem("primary_color");
     // this.layout.color.secondary_color = localStorage.getItem("secondary_color");
-
-    console.log("1,2,3... mounted loaded!");
-    console.log(localStorage);
-    console.log("ended!");
   },
   computed: {
-    
-  },
-  methods: {
     ...mapState({
       layout: (state) => state.layout.layout,
       data: (state) => JSON.stringify(state.layout.layout),
     }),
+  },
+  methods: {
     openCustomizerSetting(val) {
       this.customizer = val;
     },

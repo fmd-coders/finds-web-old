@@ -1,17 +1,17 @@
 import Layout from '../static/data/layout.json'
 
-const state = {
+export const state = () => ({
 	layout : Layout,
     sidebarType : localStorage.getItem("SidebarType") || 'default'
-}
+})
 
 // getters
-const getters = {
-
+export const getters = {
+	
 }
 
 // mutations
-const mutations = {
+export const mutations = {
 	set: (state) => {
 		document.body.className = state.layout.color.mix_layout;
 		document.body.setAttribute("main-theme-layout", state.layout.settings.layout_type);
@@ -60,10 +60,11 @@ const mutations = {
 		localStorage.setItem('SidebarType', payload);
 		window.location.reload();
 	}
-};
+}
+
 
 // actions
-const actions = {
+export const actions = {
 	set: (context) => {
 		context.commit('set');
 	},
@@ -97,10 +98,10 @@ function setColor(state, color) {
 	window.location.reload();
 }
 
-export default {
-	namespaced: true,
-	state,
-	getters,
-	actions,
-	mutations
-}
+// export default {
+// 	namespaced: true,
+// 	state,
+// 	getters,
+// 	actions,
+// 	mutations
+// }

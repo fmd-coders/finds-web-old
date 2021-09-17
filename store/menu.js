@@ -1,18 +1,18 @@
 import Menu from '../static/data/menu.json'
 
-const state = {
-  data: Menu.data,
+export const state = () => ({
+	data: Menu.data,
   searchData: [],
   togglesidebar: true
-}
+})
 
 // getters
-const getters = {
-
+export const getters = {
+	
 }
 
 // mutations
-const mutations = {
+export const mutations = {
   opensidebar: (state) => {
     state.togglesidebar = !state.togglesidebar
   },
@@ -83,7 +83,7 @@ const mutations = {
 };
 
 // actions
-const actions = {
+export const actions = {
   opensidebar: (context, term) => {
     context.commit('opensidebar', term)
   },
@@ -101,10 +101,10 @@ const actions = {
   }
 }
 
-export default {
-  namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
-}
+// export default {
+//   namespaced: true,
+//   state,
+//   getters,
+//   actions,
+//   mutations
+// }

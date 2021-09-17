@@ -11,9 +11,10 @@
   },
   "color":
   {
+    "color": null,
     "layout_version":"light",
-    "primary_color":"#7366ff",
-    "secondary_color":"#f73164",
+    "primary_color":null,
+    "secondary_color":null,
     "mix_layout":"default"
   }
 }

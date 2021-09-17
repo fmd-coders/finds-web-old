@@ -1,13 +1,3 @@
-<!--
-<template>
-  <div>
-    HOME | ABOUT | CONTACT US
-  </div>
-</template>
-<script>
-</script>
--->
-
 <template>
   <div class="header-wrapper row m-0">
     <form
