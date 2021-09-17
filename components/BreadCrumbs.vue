@@ -36,7 +36,7 @@
 </div>
 </template>
 <script>
-import Bookmark from  './bookmark'
+// import Bookmark from  './cubatheme/bookmark'
 export default {
   props: {
     title: {
@@ -47,7 +47,7 @@ export default {
     }
   },
   components:{
-    Bookmark
+    // Bookmark
   }
 }
 </script>
