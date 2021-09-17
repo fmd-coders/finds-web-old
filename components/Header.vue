@@ -28,33 +28,31 @@
               @click="search_close()"
             ></feather>
           </div>
-          <!-- <div
+          <div
             :class="searchResult ? 'Typeahead-menu is-open' : 'Typeahead-menu'"
             v-if="menuItems.length"
-          > -->
-            <!-- <div
+          >
+            <div
               class="ProfileCard u-cf"
               v-for="(menuItem, index) in menuItems.slice(0, 8)"
               :key="index"
-            > -->
+            >
               <div class="ProfileCard-avatar header-search">
                 <!-- <feather :type="menuItem.icon"></feather> -->
               </div>
               <div class="ProfileCard-details">
                 <div class="ProfileCard-realName">
                   <span @click="removeFix()"
-                    >
-                    <!-- <router-link
+                    ><router-link
                       :to="{ path: menuItem.path }"
                       class="realname"
-                      >
-                      {{ menuItem.title }}
-                    </router-link> -->
-                  </span>
+                      >{{ menuItem.title }}</router-link
+                    ></span
+                  >
                 </div>
               </div>
-            <!-- </div> -->
-          <!-- </div> -->
+            </div>
+          </div>
           <div
             :class="
               searchResultEmpty ? 'Typeahead-menu is-open' : 'Typeahead-menu'
@@ -422,130 +420,127 @@
   </div>
 </template>
 <script>
-  var body = document.getElementsByTagName("body")[0];
-  // import { mapState, mapActions } from "vuex";
-  // import app from "../main";
-  // import Bookmark from "./bookmark";
-  export default {
-    name: "Search",
-    data() {
-      return {
-        terms: "",
-        searchOpen: false,
-        searchResult: false,
-        searchResultEmpty: false,
-        close_sidebar_var: false,
-        clicked: false,
-        mobile_toggle: false,
-        mobile_search: false,
-        openbonusUI: false,
-        openLevelmenu: false,
-        openlanguage: false,
-        mobile_accordian: false,
-        mixLayout: "light-only",
-      };
+var body = document.getElementsByTagName("body")[0];
+import { mapState, mapActions } from "vuex";
+export default {
+  name: "Search",
+  data() {
+    return {
+      terms: "",
+      searchOpen: false,
+      searchResult: false,
+      searchResultEmpty: false,
+      close_sidebar_var: false,
+      clicked: false,
+      mobile_toggle: false,
+      mobile_search: false,
+      openbonusUI: false,
+      openLevelmenu: false,
+      openlanguage: false,
+      mobile_accordian: false,
+      mixLayout: "light-only",
+    };
+  },
+  components: {
+  },
+  computed: {
+    ...mapState({
+      menuItems: (state) => state.menu.searchData,
+      megamenuItems: (state) => state.menu.megamenu,
+    }),
+  },
+  methods: {
+    toggle_sidebar() {
+      this.$store.dispatch("menu/opensidebar");
     },
-    components: {
-      // Bookmark,
+    setNavActive(item) {
+      this.$store.dispatch("menu/setBonusNavActive", item);
     },
-    computed: {
-      // ...mapState({
-      //   menuItems: (state) => state.menu.searchData,
-      //   megamenuItems: (state) => state.menu.megamenu,
-      // }),
+    openlangpicker() {
+      this.openlanguage = !this.openlanguage;
     },
-    methods: {
-      toggle_sidebar() {
-        // this.$store.dispatch("menu/opensidebar");
-      },
-      // setNavActive(item) {
-      //   // this.$store.dispatch("menu/setBonusNavActive", item);
-      // },
-      // openlangpicker() {
-      //   // this.openlanguage = !this.openlanguage;
-      // },
-      // openlevelmenu() {
-      //   // this.openLevelmenu = !this.openLevelmenu;
-      // },
-      // openmegamenu() {
-      //   // this.openbonusUI = !this.openbonusUI;
-      // },
-      // closeBonusUI() {
-      //   // this.openbonusUI = false;
-      // },
-      // search_open() {
-      //   // this.searchOpen = true;
-      // },
-      // search_close() {
-      //   // this.searchOpen = false;
-      // },
-      searchterm: function () {
-      //   // this.$store.dispatch("menu/searchTerm", this.terms);
-      },
-      // changeLocale(locale) {
-      //   // this.setLang(locale);
-      // },
-      // mobileaccordian() {
-      //   // this.mobile_accordian = !this.mobile_accordian;
-      // },
-      // logout: function () {
-      //   // firebase
-      //   //   .auth()
-      //   //   .signOut()
-      //   //   .then(() => {
-      //   //     UserAuth.Logout();
-      //   //     this.$router.replace("/auth/login");
-      //   //   });
-      // },
-      // addFix() {
-      //   body.classList.add("offcanvas");
-      //   this.searchResult = true;
-      // },
-      // removeFix() {
-      //   body.classList.remove("offcanvas");
-      //   this.searchResult = false;
-      //   this.terms = "";
-      // },
-      // toggle_fullscreen() {
-      //   if (
-      //     (document.fullScreenElement && document.fullScreenElement !== null) ||
-      //     (!document.mozFullScreen && !document.webkitIsFullScreen)
-      //   ) {
-      //     if (document.documentElement.requestFullScreen) {
-      //       document.documentElement.requestFullScreen();
-      //     } else if (document.documentElement.mozRequestFullScreen) {
-      //       document.documentElement.mozRequestFullScreen();
-      //     } else if (document.documentElement.webkitRequestFullScreen) {
-      //       document.documentElement.webkitRequestFullScreen(
-      //         Element.ALLOW_KEYBOARD_INPUT
-      //       );
-      //     }
-      //   } else {
-      //     if (document.cancelFullScreen) {
-      //       document.cancelFullScreen();
-      //     } else if (document.mozCancelFullScreen) {
-      //       document.mozCancelFullScreen();
-      //     } else if (document.webkitCancelFullScreen) {
-      //       document.webkitCancelFullScreen();
-      //     }
-      //   }
-      // },
-      // customizeMixLayout(val) {
-      //   this.mixLayout = val;
-      //   this.$store.dispatch("layout/setLayout", val);
-      // },
-    // },
-    // watch: {
-      // "$i18n.locale"(to, from) {
-      //   if (from !== to) {
-      //     this.$router.go(this.$route.path);
-      //   }
-      // },
-      // menuItems: function () {
-      //   this.terms ? this.addFix() : this.removeFix();
-      //   if (!this.menuItems.length) this.searchResultEmpty = true;
-      //   else this.searchResultEmpty = false;
-      // },
+    openlevelmenu() {
+      this.openLevelmenu = !this.openLevelmenu;
     },
-  };
+    openmegamenu() {
+      this.openbonusUI = !this.openbonusUI;
+    },
+    closeBonusUI() {
+      this.openbonusUI = false;
+    },
+    search_open() {
+      this.searchOpen = true;
+    },
+    search_close() {
+      this.searchOpen = false;
+    },
+    searchterm: function () {
+      this.$store.dispatch("menu/searchTerm", this.terms);
+    },
+    changeLocale(locale) {
+      this.setLang(locale);
+    },
+    mobileaccordian() {
+      this.mobile_accordian = !this.mobile_accordian;
+    },
+    logout: function () {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          UserAuth.Logout();
+          this.$router.replace("/auth/login");
+        });
+    },
+    addFix() {
+      body.classList.add("offcanvas");
+      this.searchResult = true;
+    },
+    removeFix() {
+      body.classList.remove("offcanvas");
+      this.searchResult = false;
+      this.terms = "";
+    },
+    toggle_fullscreen() {
+      if (
+        (document.fullScreenElement && document.fullScreenElement !== null) ||
+        (!document.mozFullScreen && !document.webkitIsFullScreen)
+      ) {
+        if (document.documentElement.requestFullScreen) {
+          document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+          document.documentElement.webkitRequestFullScreen(
+            Element.ALLOW_KEYBOARD_INPUT
+          );
+        }
+      } else {
+        if (document.cancelFullScreen) {
+          document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        }
+      }
+    },
+    customizeMixLayout(val) {
+      this.mixLayout = val;
+      this.$store.dispatch("layout/setLayout", val);
+    },
+  },
+  watch: {
+    "$i18n.locale"(to, from) {
+      if (from !== to) {
+        this.$router.go(this.$route.path);
+      }
+    },
+    menuItems: function () {
+      this.terms ? this.addFix() : this.removeFix();
+      if (!this.menuItems.length) this.searchResultEmpty = true;
+      else this.searchResultEmpty = false;
+    },
+  },
+};
 </script>
