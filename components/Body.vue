@@ -10,7 +10,8 @@
         </div>
         <div class="page-body">
           <transition name="fadeIn" enter-active-class="animated fadeIn">
-           <router-view class="view"></router-view>
+           <!-- <router-view class="view"></router-view> -->
+            <Nuxt />
           </transition>
         </div>
         <Footer/>
